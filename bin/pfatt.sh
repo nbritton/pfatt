@@ -24,6 +24,7 @@ getTimestamp(){
     echo "OK!"
 
     if [ ${OPNSENSE} != 'yes' ]; then
+        /sbin/kldload -nq ng_ether
         echo -n "$(getTimestamp) attaching interfaces to ng_ether... "
         /usr/local/bin/php -r "pfSense_ngctl_attach('.', '$ONT_IF');" 
         /usr/local/bin/php -r "pfSense_ngctl_attach('.', '$RG_IF');"
